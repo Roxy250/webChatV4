@@ -7,6 +7,7 @@ import Header from '../components/chat/Header';
 import Sidebar from '../components/chat/Sidebar';
 import Mainbar from '../components/chat/Mainbar';
 import SendMessageForm from '../components/chat/SendMessageForm';
+import NotFoundPage from './NotFoundPage';
 
 const socket = io('http://localhost:3000');
 
@@ -76,7 +77,8 @@ const Home = () => {
 
   return (
     <div style={{ backgroundColor: "black", height: "100vh" }}>
-      <Container maxWidth="xl" style={{ height: "100%", overflow: "hidden" }}>
+      
+      {user?(<Container maxWidth="xl" style={{ height: "100%", overflow: "hidden" }}>
         <Grid container spacing={0} style={{ height: "100%" }}>
           {/* Header */}
           <Grid item xs={12}>
@@ -94,7 +96,7 @@ const Home = () => {
             <SendMessageForm send={send} />
           </Grid>
         </Grid>
-      </Container>
+      </Container>):<NotFoundPage />}
     </div>
   );
 };

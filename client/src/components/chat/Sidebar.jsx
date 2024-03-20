@@ -20,12 +20,12 @@ const Sidebar = ({ users }) => {
         <Card
           key={index + 1}
           style={{
-            margin: "10px",
+            margin: "15px",
             height: "60px",
             borderRadius: "5px",
             marginBottom: "2px",
             boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-            backgroundColor: "#1976d2", // Add grey background color
+            backgroundColor: "#2dacf0", // Add grey background color
           }}
         >
           <CardContent style={{ display: "flex", alignItems: "center" }}>

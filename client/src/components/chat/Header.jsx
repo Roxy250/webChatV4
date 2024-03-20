@@ -17,6 +17,7 @@ const Header = ({ user, logout }) => {
         alignItems: "center",
         backgroundColor: "#1a1a1a",
       }}
+      
     >
       <div style={{ display: "flex", alignItems: "center" }}>
         <Avatar
@@ -33,10 +34,11 @@ const Header = ({ user, logout }) => {
         onClick={() => logout(user?.user_id)}
         sx={{
           minWidth: "80px",
+          padding: "15px",
           height: "36px",
           fontSize: "0.8rem",
-          fontWeight: "bold",
-          backgroundColor: "#1976d2",
+          // fontWeight: "bold",
+          backgroundColor: "#2dacf0",
           color: "#fff",
           "&:hover": { backgroundColor: "#1565c0" },
         }}
