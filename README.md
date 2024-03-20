@@ -8,7 +8,7 @@ Thank you for choosing our project! Here's how you can get started:
 - VS Code and MongoDB Compass installed on your machine
 
 ### Getting Started
-1. **Clone the Repository:** `git clone https://github.com/Roxy250/webChatV3.git`
+1. **Clone the Repository:** `git clone https://github.com/Roxy250/webChatV4.git`
 2. **Navigate to the Server Directory:** Open two terminal windows and navigate to the project directory in each terminal. 
    ```
    cd /server
