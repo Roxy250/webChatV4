@@ -4,16 +4,18 @@ import { Typography, Avatar, Paper, Card, CardContent } from "@mui/material";
 const Sidebar = ({ users }) => {
   return (
     <Paper
-      style={{
-        position: "absolute",
-        top: "68px", // Adjusted top position to match the height of the Header
-        left: "0",
-        width: "25%",
-        height: "calc(100vh - 68px)", // Adjusted height to fill the remaining space
-        backgroundColor: "#1a1a1a",
-        border: "none",
-        borderRadius: "none"
-      }}
+    style={{
+      position: "absolute",
+      top: "68px", // Adjusted top position to match the height of the Header
+      left: "0",
+      width: "25%",
+      height: "calc(100vh - 68px)", // Adjusted height to fill the remaining space
+      // backgroundImage: "linear-gradient(to bottom, #1a1a1a, #85a7ff)", // Gradient from #1a1a1a to a lighter blue shade
+      border: "none",
+      borderRadius: "none"
+    }}
+    
+    
     >
       {/* User Cards */}
       {users.map((obj, index) => (

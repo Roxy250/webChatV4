@@ -16,6 +16,7 @@ const Header = ({ user, logout }) => {
         justifyContent: "space-between",
         alignItems: "center",
         backgroundColor: "#1a1a1a",
+        
       }}
       
     >
@@ -37,7 +38,7 @@ const Header = ({ user, logout }) => {
           padding: "15px",
           height: "36px",
           fontSize: "0.8rem",
-          // fontWeight: "bold",
+          fontWeight: "bold",
           backgroundColor: "#2dacf0",
           color: "#fff",
           "&:hover": { backgroundColor: "#1565c0" },

@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import bgVideo from "../assets/BG.mp4";
+import Background from "../components/Background";
+import Logo from "../components/Logo";
+import "../styles.css";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -76,7 +78,7 @@ const SignUp = () => {
       .then(async (response) => {
         if (response.data.success) {
           toast.success(response.data.message);
-          navigate("/");
+          navigate("/login");
         } else toast.error(response.data.message);
       })
       .catch((error) => console.log(error));
@@ -112,82 +114,37 @@ const SignUp = () => {
     e.preventDefault();
   };
 
-  const inputStyle = {
-    display: "block",
-    border: "none",
-    height: "33px",
-    width: "100%",
-    backgroundColor: "rgba(255,255,255,0.4)",
-    borderRadius: "3.35px",
-    padding: "0 6.67px",
-    marginTop: "1.34px",
-    fontSize: "12px",
-    fontWeight: "200",
-    marginBottom: "10.68px",
-  };
-
-  const buttonStyle = {
-    width: "100%",
-    backgroundColor: "#1976d2",
-    border: "none",
-    color: "#080710",
-    padding: "10px 0",
-    fontSize: "12px",
-    fontWeight: "400",
-    borderRadius: "3.35px",
-    cursor: "pointer",
-    marginTop: "20px",
-    marginBottom: "5px",
-    textAlign: "center",
-  };
-
   return (
     <div
       style={{
         minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
         position: "relative",
+        backgroundImage:
+          "linear-gradient(to right, #0f0f0f, rgba(255,255,255,0))", // Linear gradient background
       }}
     >
-      <video
-        autoPlay
-        loop
-        muted
-        style={{
-          position: "absolute",
-          top: "0",
-          left: "0",
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          zIndex: "-1",
-        }}
-      >
-        <source src={bgVideo} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      <Background />
+
+      <Logo />
 
       {!verificationInProgress && (
-        <form
-          onSubmit={handleSubmit}
-          style={{
-            width: "400px",
-            height: "auto",
-            backgroundColor: "rgba(255,255,255,0.3)",
-            borderRadius: "6.67px",
-            backdropFilter: "blur(66.67px)",
-            border: "1.34px solid rgba(255,255,255,0.1)",
-            boxShadow: "0 0 26.67px rgba(8,7,16,0.3)",
-            padding: "33.34px 66.67px",
-            fontSize: "13.33px",
-          }}
-        >
-          <h1 style={{ textAlign: "center", marginBottom: "20px" }}>SignUp</h1>
+        <form onSubmit={handleSubmit} className="form-container">
+          <h1 className="heading">Register Here!</h1>
+
+          <div
+            style={{ marginBottom: "25px", color: "rgba(255, 255, 255, 0.5)" }}
+          >
+            Already have an account? &nbsp;
+            <Link
+              to={"/login"}
+              style={{ textDecoration: "none", color: "#1976d2" }}
+            >
+              SignIn
+            </Link>
+          </div>
           {["Email", "Username", "Password"].map((field) => (
-            <div key={field}>
-              <label>{field}:</label>
+            <div key={field} style={{ marginBottom: "10px" }}>
+              <label className="label">{field}:</label>
               <input
                 type={field === "Password" ? "password" : "text"}
                 required
@@ -195,45 +152,26 @@ const SignUp = () => {
                 onChange={(e) =>
                   setUserInfo({ ...userInfo, [e.target.name]: e.target.value })
                 }
-                style={inputStyle}
+                className="input-field"
               />
             </div>
           ))}
-          <button
-            type="button"
-            onClick={handleSendOtp}
-            style={{ ...buttonStyle }}
-          >
+
+          <button type="button" onClick={handleSendOtp} className="button">
             Send OTP
           </button>
-          <div style={{ textAlign: "center", marginTop: "20px" }}>
-            <Link to={"/"} style={{ textDecoration: "none", color: "#1976d2" }}>
-              Already have an account? SignIn
-            </Link>
-          </div>
         </form>
       )}
 
       {verificationInProgress && (
-        <form
-          onSubmit={handleSubmit}
-          style={{
-            width: "400px",
-            height: "auto",
-            backgroundColor: "rgba(255,255,255,0.3)",
-            borderRadius: "6.67px",
-            backdropFilter: "blur(66.67px)",
-            border: "1.34px solid rgba(255,255,255,0.1)",
-            boxShadow: "0 0 26.67px rgba(8,7,16,0.3)",
-            padding: "33.34px 66.67px",
-            fontSize: "13.33px",
-          }}
-        >
-          <h1 style={{ textAlign: "center", marginBottom: "20px" }}>
-            Verify OTP
+        <form onSubmit={handleSubmit} className="form-container">
+          <h1
+            style={{ marginBottom: "5px", fontFamily: font, fontSize: "27px" }}
+          >
+            Verify Your OTP
           </h1>
           <input
-            placeholder={`Enter OTP - Time remaining: ${Math.floor(
+            placeholder={`Time remaining: ${Math.floor(
               timeRemaining / 60000
             )}:${((timeRemaining % 60000) / 1000).toFixed(0).padStart(2, "0")}`}
             name="otp"
@@ -243,19 +181,14 @@ const SignUp = () => {
               ...inputStyle,
               marginTop: "20px",
               marginBottom: "6px",
-              textAlign: "center",
+              // textAlign: "center",
             }}
             maxLength="4"
             autoComplete="one-time-code"
           />
-          <button type="button" onClick={handleVerify} style={buttonStyle}>
+          <button type="button" onClick={handleVerify} className="button">
             Verify
           </button>
-          <div style={{ textAlign: "center", marginTop: "20px" }}>
-            <Link to={"/"} style={{ textDecoration: "none", color: "#1976d2" }}>
-              Already have an account? SignIn
-            </Link>
-          </div>
         </form>
       )}
 
