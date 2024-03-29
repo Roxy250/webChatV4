@@ -18,7 +18,7 @@ const App = () => {
       <Background />
       <AnimatePresence>
         <Routes>
-          <Route path="/" element={<HomeWrapper />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginWrapper />} />
           <Route path="/signup" element={<SignUpWrapper />} />
           <Route exact path="/chat" element={<Chat />} />

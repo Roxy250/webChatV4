@@ -1,41 +1,33 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router"; // Import useNavigate from react-router
-
-import Logo from "../components/Logo";
+import { useNavigate } from "react-router";
+import { SyncLoader } from "react-spinners";
 
 import logo from "../assets/logo.png";
 
 const HomePage = () => {
-  const navigate = useNavigate(); // Use useNavigate hook for programmatic navigation
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate("/login"); // Redirect to login page after 3 seconds
-    }, 3000);
+      navigate("/login");
+    }, 2000);
 
-    return () => clearTimeout(timer); // Clear the timer when the component unmounts
+    return () => clearTimeout(timer);
   }, [navigate]);
 
   return (
     <div
       style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
         minHeight: "100vh",
-        position: "relative",
         backgroundColor: "rgba(0, 0, 0, 0.6)",
       }}
     >
-      
-      <Logo />
-      <div
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          textAlign: "center",
-        }}
-      >
-        <img src={logo} style={{ maxWidth: "250px" }} alt="Logo" />
+      <div style={{ textAlign: "center" }}>
+        <img src={logo} style={{ maxWidth: "150px", marginBottom: "20px" }} alt="Logo" />
+        <SyncLoader color="#03bcf4" margin={4} size={10} />
       </div>
     </div>
   );
