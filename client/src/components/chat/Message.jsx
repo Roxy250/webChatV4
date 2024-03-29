@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Typography, Button } from "@mui/material";
+import { Typography } from "@mui/material";
 import { format } from "date-fns";
+import { motion } from "framer-motion";
 
 const Message = ({ sender, message, timeStamp, isCurrentUser }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -11,7 +12,14 @@ const Message = ({ sender, message, timeStamp, isCurrentUser }) => {
   };
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, x: isCurrentUser ? -100 : 100 }} // Adjust the x value for less sliding into the side
+      animate={{ opacity: 1, x: 0 }}
+      transition={{
+        type: "spring",
+        stiffness: 150,
+        damping: 20, // Increase damping for smoother animation
+      }}
       style={{
         display: "flex",
         flexDirection: isCurrentUser ? "row-reverse" : "row",
@@ -37,42 +45,42 @@ const Message = ({ sender, message, timeStamp, isCurrentUser }) => {
         <Typography sx={{ fontSize: "0.8rem" }}>
           {isExpanded ? message : truncatedMessage}
         </Typography>
-        <Typography
-          variant="caption"
-          sx={{ color: "#ffd700", fontSize: "0.56rem" }}
-        >
-          {isCurrentUser ? "You" : sender}
-        </Typography>
-        <Typography
-          variant="caption"
-          sx={{
-            color: "#ffd700",
-            marginLeft: "2.4rem",
-            float: "right",
-            fontSize: "0.48rem",
-            marginTop: "0.48rem",
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          {format(new Date(timeStamp), "hh:mm")}
-        </Typography>
-        {message.length > 500 && (
+          <Typography
+            variant="caption"
+            sx={{ color: "#ffd700", fontSize: "0.56rem", marginRight: "4px" }}
+          >
+            {isCurrentUser ? "You" : sender}
+          </Typography>
+          <Typography
+            variant="caption"
+            sx={{ color: "#ffd700", fontSize: "0.48rem" }}
+          >
+            {format(new Date(timeStamp), "hh:mm")}
+          </Typography>
+        </div>
+        {message.length > 100 && (
           <Typography
             variant="caption"
             sx={{
               color: "#ffd700",
               fontSize: "0.48rem",
-              marginLeft: "2.4rem",
               cursor: "pointer",
-              float: "right",
-              marginTop: "0.48rem",
+              marginTop: "0.24rem",
             }}
             onClick={toggleExpand}
           >
-            {isExpanded ? "Read less" : "Read more"}
+            {isExpanded ? "Show less" : "Show more"}
           </Typography>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

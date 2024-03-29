@@ -25,6 +25,7 @@ const SendMessageForm = ({ send }) => {
         display: "flex",
         padding: "8px",
         alignItems: "center", // Changed to center for vertical alignment
+        justifyContent: "space-between", // Added to evenly space input and button
         zIndex: 999, // Ensure it's above other elements
       }}
     >

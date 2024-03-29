@@ -3,7 +3,7 @@ import bgVideo from "../assets/BG.mp4";
 
 const Background = () => {
   return (
-    <div>
+    <div >
       <video
         autoPlay
         loop

@@ -1,12 +1,12 @@
 import React from "react";
 import { Typography, Avatar, Button, Paper } from "@mui/material";
+import "../../styles.css";
 
 const Header = ({ user, logout }) => {
   return (
     <Paper
       style={{
         position: "fixed",
-        border: "none",
         top: 0,
         left: 0,
         right: 0,
@@ -15,10 +15,9 @@ const Header = ({ user, logout }) => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        backgroundColor: "#1a1a1a",
-        
+        backgroundColor: "#2d2d2d",
+        boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
       }}
-      
     >
       <div style={{ display: "flex", alignItems: "center" }}>
         <Avatar
@@ -26,7 +25,15 @@ const Header = ({ user, logout }) => {
           alt="User Profile"
           sx={{ width: 30, height: 30, marginRight: "10px" }}
         />
-        <Typography sx={{ color: "black" }}>
+        <Typography
+          className="user-heading"
+          sx={{
+            color: "#03bcf4",
+            fontFamily: "MyFont",
+            fontSize: "1.5rem",
+            animation: "animate 5s infinite",
+          }}
+        >
           Hello, {user?.username}
         </Typography>
       </div>
@@ -41,8 +48,12 @@ const Header = ({ user, logout }) => {
           fontWeight: "bold",
           backgroundColor: "#2dacf0",
           color: "#fff",
-          "&:hover": { backgroundColor: "#1565c0" },
+          "&:hover": { 
+            backgroundColor: "#03bcf4", // Change to a darker shade of blue
+            boxShadow: "0 0 10px #03bcf4, 0 0 20px #03bcf4, 0 0 40px #03bcf4", // Add box-shadow
+          }
         }}
+        
       >
         Logout
       </Button>

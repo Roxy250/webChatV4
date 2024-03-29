@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import Background from "../components/Background";
 import Logo from "../components/Logo";
 import "../styles.css";
 
@@ -20,7 +19,7 @@ const SignUp = () => {
         setTimeRemaining((prevTime) => Math.max(0, prevTime - 1000));
       }, 1000);
     } else {
-      setVerificationInProgress(false); // Set verification to false when time expires
+      setVerificationInProgress(false);
     }
     return () => clearInterval(intervalId);
   }, [timeRemaining]);
@@ -120,11 +119,9 @@ const SignUp = () => {
         minHeight: "100vh",
         position: "relative",
         backgroundImage:
-          "linear-gradient(to right, #0f0f0f, rgba(255,255,255,0))", // Linear gradient background
+          "linear-gradient(to right, black, rgba(255, 255, 255, 0))",
       }}
     >
-      <Background />
-
       <Logo />
 
       {!verificationInProgress && (
@@ -135,10 +132,7 @@ const SignUp = () => {
             style={{ marginBottom: "25px", color: "rgba(255, 255, 255, 0.5)" }}
           >
             Already have an account? &nbsp;
-            <Link
-              to={"/login"}
-              style={{ textDecoration: "none", color: "#1976d2" }}
-            >
+            <Link to={"/login"} className="link">
               SignIn
             </Link>
           </div>
@@ -165,11 +159,7 @@ const SignUp = () => {
 
       {verificationInProgress && (
         <form onSubmit={handleSubmit} className="form-container">
-          <h1
-            style={{ marginBottom: "5px", fontFamily: font, fontSize: "27px" }}
-          >
-            Verify Your OTP
-          </h1>
+          <h1>Verify Your OTP</h1>
           <input
             placeholder={`Time remaining: ${Math.floor(
               timeRemaining / 60000
@@ -177,12 +167,7 @@ const SignUp = () => {
             name="otp"
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
-            style={{
-              ...inputStyle,
-              marginTop: "20px",
-              marginBottom: "6px",
-              // textAlign: "center",
-            }}
+            style={{ marginTop: "20px", marginBottom: "6px" }}
             maxLength="4"
             autoComplete="one-time-code"
           />

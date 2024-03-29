@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router"; // Import useNavigate from react-router
 
 import Logo from "../components/Logo";
-import Background from "../components/Background";
+
 import logo from "../assets/logo.png";
 
 const HomePage = () => {
@@ -24,7 +24,7 @@ const HomePage = () => {
         backgroundColor: "rgba(0, 0, 0, 0.6)",
       }}
     >
-      <Background />
+      
       <Logo />
       <div
         style={{

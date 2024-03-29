@@ -1,5 +1,4 @@
-import React from "react";
-import bgVideo from "../assets/BG.mp4"; // Provide the path to your video
+import React from "react"; // Provide the path to your video
 
 const NotFoundPage = () => {
   return (
@@ -12,23 +11,6 @@ const NotFoundPage = () => {
         position: "relative",
       }}
     >
-      <video
-        autoPlay
-        loop
-        muted
-        style={{
-          position: "absolute",
-          top: "0",
-          left: "0",
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          zIndex: "0", // Ensure the video has a lower z-index than the text
-        }}
-      >
-        <source src={bgVideo} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
       <div
         style={{
           width: "400px",
