@@ -118,12 +118,12 @@
 }
 
 .link {
-  color: #1976d2;
+  color: #03bcf4;
   text-decoration: none;
 }
 
 .link:hover {
-  color: #03bcf4;
+  color: #a4eaff;
   text-decoration: none; /* or any other hover effect you prefer */
  /* Multiple shadows to create a glow effect */
 }
